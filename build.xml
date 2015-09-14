@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="WebServer" default="compile" basedir=".">
+
+   <target name="clean">
+      <delete dir="jar"/>
+   </target>
+
+   <target name="compile">
+      <javac includeantruntime="true" srcdir="./src" destdir="src" includes="**/*.java"></javac>
+   </target>
+
+   <target name="jar" depends="compile">
+        <mkdir dir="jar"/>
+        <jar destfile="jar/WebServer.jar" basedir="src">
+            <manifest>
+                <attribute name="Main-Class" value="WebServer"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="clean, jar">
+        <java jar="jar/WebServer.jar" fork="true"/>
+    </target>
+</project>
